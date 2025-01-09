@@ -5,7 +5,7 @@ namespace task02
     {
         static void Main(string[] args)
         {
-            List<int> listOfNumbers = new List<int>();
+            List<int> listOfNumbers = new List<int>() { 1, 2, 6, 4, 7, 8, 5 };
             char choise;
             int num;
             double sum;
@@ -27,6 +27,7 @@ namespace task02
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\tP - Print numbers");
                 Console.WriteLine("\tA - Add a number");
+                Console.WriteLine("\tI - Search For a number");
                 Console.WriteLine("\tM - Display mean of the numbers");
                 Console.WriteLine("\tS - Display the smallest number");
                 Console.WriteLine("\tL - Display the largest number");
@@ -53,14 +54,14 @@ namespace task02
                     case 'P':
                         if (listOfNumbers.Count == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("The list is empty.");
                             Console.ResetColor();
                         }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Numbers in the list:");
+                            Console.WriteLine("=== Numbers in the list ===");
                             Console.ResetColor();
                             Console.WriteLine(new string('-', 30));
                             for (int i = 0; i < listOfNumbers.Count; i++)
@@ -97,6 +98,59 @@ namespace task02
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("Number added successfully.");
                             Console.ResetColor();
+                        }
+                        break;
+                    case 'I':
+                        if (listOfNumbers.Count == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("The list is empty.");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Enter the Number ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(">");
+                            Console.ResetColor();
+                            int numberToSearch = Convert.ToInt32(Console.ReadLine());
+                            bool found = false;
+                            for (int i = 0; i < listOfNumbers.Count; i++)
+                            {
+                                if (listOfNumbers[i] == numberToSearch)
+                                {
+                                    Console.WriteLine($"Index of The number is {i} ");
+                                    found = true;
+                                }
+                            }
+                            if (!found)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("Cant Find This number,want to add ?(Y/N)");
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.Write(">");
+                                Console.ResetColor();
+                                char theInput = Convert.ToChar(Console.ReadLine());
+                                if (char.ToUpper(theInput) == 'Y')
+                                {
+                                    listOfNumbers.Add(numberToSearch);
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("Number added successfully.");
+                                    Console.ResetColor();
+                                }
+                                else if (char.ToUpper(theInput) == 'N')
+                                {
+                                    Console.WriteLine("Thank You");
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("invalid input");
+                                    Console.ResetColor();
+                                }
+                            }
                         }
                         break;
                     case 'M':
@@ -181,6 +235,18 @@ namespace task02
                             listOfNumbers = new List<int>();
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("The list has been cleared.");
+                            Console.ResetColor();
+                        }
+                        else if (char.ToUpper(input) == 'N')
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Thank You");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("invalid input");
                             Console.ResetColor();
                         }
                         break;
