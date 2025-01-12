@@ -5,7 +5,7 @@ namespace task02
     {
         static void Main(string[] args)
         {
-            List<int> listOfNumbers = new List<int>() { 1, 2, 6, 4, 7, 8, 5 };
+            List<int> listOfNumbers = new List<int>();
             char choise;
             int num;
             double sum;
@@ -314,6 +314,7 @@ namespace task02
                                 {
                                     if (listOfNumbers[j] > listOfNumbers[j + 1])
                                     {
+
                                         int temp = listOfNumbers[j];
                                         listOfNumbers[j] = listOfNumbers[j + 1];
                                         listOfNumbers[j + 1] = temp;
